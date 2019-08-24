@@ -19,23 +19,7 @@ class LinearEquationSolver {
         }
     }
 
-    static void gaussElimRow(Row rowA, Row rowB, int pos) {
-        double[] a = rowA.getCoefficients();
-        double[] b = rowB.getCoefficients();
-
-        double x;
-
-        x = -b[pos] / a[pos];
-
-        System.out.printf("%.2f * %s + %s -> %s\n",
-                x, rowA.getName(), rowB.getName(), rowB.getName());
-
-        for (int i = 0; i < b.length; i++) {
-            b[i] += a[i] * x;
-        }
-    }
-
-    private static void jordanElimRow(Row rowA, Row rowB, int pos) {
+    private static void gaussJordanElimRow(Row rowA, Row rowB, int pos) {
         double[] a = rowA.getCoefficients();
         double[] b = rowB.getCoefficients();
 
@@ -57,13 +41,13 @@ class LinearEquationSolver {
         for (int pos = 0; pos < matrix.rows[0].getLength() - 1; pos++) {
             if (matrix.rows[pos].getValue(pos) != 1) normaliseRow(matrix.rows[pos], pos);
             for (int i = pos; i < matrix.rows.length - 1; i++) {
-                gaussElimRow(matrix.rows[pos], matrix.rows[i + 1], pos);
+                gaussJordanElimRow(matrix.rows[pos], matrix.rows[i + 1], pos);
             }
         }
 
         for (int pos = matrix.rows[0].getLength() - 2; pos > 0; pos--) {
             for (int row = pos - 1; row >= 0; row--) {
-                jordanElimRow(matrix.rows[pos], matrix.rows[row], pos);
+                gaussJordanElimRow(matrix.rows[pos], matrix.rows[row], pos);
             }
         }
 
