@@ -61,13 +61,6 @@ class Solver {
             solution.append(" ");
         }
 
-        try (FileWriter fileWriter = new FileWriter(outputFile)) {
-            fileWriter.write(output.toString());
-        } catch (IOException e) {
-            System.out.println("Could not open file");
-        }
-        System.out.printf("Saved to file %s\n%n", outputFile);
-
         return solution.toString().trim();
     }
 
@@ -100,7 +93,6 @@ class Solver {
 
         return gaussJordanElim(matrix, "out.txt");
     }
-
 
     String solveSystem(Matrix matrix) {
         return null;

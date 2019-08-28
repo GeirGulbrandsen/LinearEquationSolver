@@ -1,6 +1,9 @@
 package solver;
 
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 import static solver.Solver.gaussJordanElim;
 
 public class Main {
@@ -20,8 +23,14 @@ public class Main {
         }
 
         Matrix matrix = Matrix.readMatrixFromFile(inputFile);
-        gaussJordanElim(matrix, outputFile);
+        String solution = gaussJordanElim(matrix, outputFile);
 
-
+        try (FileWriter fileWriter = new FileWriter(outputFile)) {
+            for (String str : solution.split(" "))
+                fileWriter.write(str + "\n");
+        } catch (IOException e) {
+            System.out.println("Could not open file");
+        }
+        System.out.printf("Saved to file %s\n%n", outputFile);
     }
 }
