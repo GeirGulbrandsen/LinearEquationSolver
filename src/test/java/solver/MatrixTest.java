@@ -5,7 +5,7 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertThat;
-import static solver.LinearEquationSolver.gaussJordanElim;
+import static solver.Solver.gaussJordanElim;
 import static solver.Matrix.readMatrixFromFile;
 
 public class MatrixTest {

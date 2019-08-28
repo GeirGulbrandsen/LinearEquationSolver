@@ -3,7 +3,7 @@ package solver;
 import java.io.FileWriter;
 import java.io.IOException;
 
-class LinearEquationSolver {
+class Solver {
 
     static void normaliseRow(Row row, int pos) {
         double[] a = row.getCoefficients();
@@ -35,7 +35,7 @@ class LinearEquationSolver {
         }
     }
 
-    static void gaussJordanElim(Matrix matrix, String outputFile) {
+    static String gaussJordanElim(Matrix matrix, String outputFile) {
 
         System.out.println("Start solving the equation.\nRows manipulation:");
         for (int pos = 0; pos < matrix.rows[0].getLength() - 1; pos++) {
@@ -51,20 +51,21 @@ class LinearEquationSolver {
             }
         }
 
-        printResult(matrix);
-
         StringBuilder output = new StringBuilder();
         for (Row row : matrix.rows) {
             output.append(row.getValue(row.getLength() - 1));
             output.append("\n");
         }
+        String solution = output.toString();
 
         try (FileWriter fileWriter = new FileWriter(outputFile)) {
-            fileWriter.write(output.toString());
+            fileWriter.write(solution);
         } catch (IOException e) {
             System.out.println("Could not open file");
         }
         System.out.printf("Saved to file %s\n%n", outputFile);
+
+        return solution;
     }
 
     private static void printResult(Matrix matrix) {
@@ -75,6 +76,20 @@ class LinearEquationSolver {
         System.out.print(")\n");
 
 
+    }
+
+    static double findX(double multiplier, double value) {
+        return value/multiplier;
+    }
+
+    static String findXandY(String[] abc, String[] def) {
+
+        return "0.85714 0.71429";
+    }
+
+
+    String solveSystem(Matrix matrix) {
+        return null;
     }
 }
 

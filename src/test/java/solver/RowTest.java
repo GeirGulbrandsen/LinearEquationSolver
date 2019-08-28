@@ -3,7 +3,7 @@ package solver;
 import org.junit.Test;
 
 import static org.junit.Assert.assertArrayEquals;
-import static solver.LinearEquationSolver.normaliseRow;
+import static solver.Solver.normaliseRow;
 
 public class RowTest {
 

@@ -1,7 +1,7 @@
 package solver;
 
 
-import static solver.LinearEquationSolver.gaussJordanElim;
+import static solver.Solver.gaussJordanElim;
 
 public class Main {
     public static void main(String[] args) {
@@ -21,5 +21,7 @@ public class Main {
 
         Matrix matrix = Matrix.readMatrixFromFile(inputFile);
         gaussJordanElim(matrix, outputFile);
+
+
     }
 }
