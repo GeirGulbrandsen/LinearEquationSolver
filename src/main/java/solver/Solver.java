@@ -2,6 +2,7 @@ package solver;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
 
 class Solver {
 
@@ -52,20 +53,22 @@ class Solver {
         }
 
         StringBuilder output = new StringBuilder();
+        StringBuilder solution = new StringBuilder();
         for (Row row : matrix.rows) {
             output.append(row.getValue(row.getLength() - 1));
             output.append("\n");
+            solution.append(String.format("%.5f", row.getValue(row.getLength() - 1)));
+            solution.append(" ");
         }
-        String solution = output.toString();
 
         try (FileWriter fileWriter = new FileWriter(outputFile)) {
-            fileWriter.write(solution);
+            fileWriter.write(output.toString());
         } catch (IOException e) {
             System.out.println("Could not open file");
         }
         System.out.printf("Saved to file %s\n%n", outputFile);
 
-        return solution;
+        return solution.toString().trim();
     }
 
     private static void printResult(Matrix matrix) {
@@ -79,12 +82,23 @@ class Solver {
     }
 
     static double findX(double multiplier, double value) {
-        return value/multiplier;
+        return value / multiplier;
     }
 
     static String findXandY(String[] abc, String[] def) {
 
-        return "0.85714 0.71429";
+        Matrix matrix = new Matrix(new Row[]{
+                new Row("R1",
+                        Arrays.stream(abc)
+                                .mapToDouble(Double::parseDouble)
+                                .toArray()),
+                new Row("R2",
+                        Arrays.stream(def)
+                                .mapToDouble(Double::parseDouble)
+                                .toArray())
+        });
+
+        return gaussJordanElim(matrix, "out.txt");
     }
 
 
