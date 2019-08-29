@@ -31,4 +31,35 @@ public class MatrixTest {
 
         assertNull(matrix);
     }
+
+    @Test
+    public void weCanSwapTwoRows() {
+
+        Matrix matrix = new Matrix(new Row[]{
+                new Row("R1", new double[]{1, 1, 2, 9}),
+                new Row("R2", new double[]{2, 4, -3, 1}),
+                new Row("R3", new double[]{3, 6, -5, 0})});
+
+        matrix.swapRows(0, 1);
+
+        assertArrayEquals(new double[]{2.0, 4.0, -3.0, 1.0}, matrix.rows[0].getCoefficients(), 0.001);
+        assertArrayEquals(new double[]{1.0, 1.0, 2.0, 9.0}, matrix.rows[1].getCoefficients(), 0.001);
+        assertArrayEquals(new double[]{3.0, 6.0, -5.0, 0.0}, matrix.rows[2].getCoefficients(), 0.001);
+    }
+
+    @Test
+    public void weCanSwapTwoColumns() {
+
+        Matrix matrix = new Matrix(new Row[]{
+                new Row("R1", new double[]{1, 1, 2, 9}),
+                new Row("R2", new double[]{2, 4, -3, 1}),
+                new Row("R3", new double[]{3, 6, -5, 0})});
+
+        matrix.swapCols(0, 2);
+
+        assertArrayEquals(new double[]{2.0, 1.0, 1.0, 9.0}, matrix.rows[0].getCoefficients(), 0.001);
+        assertArrayEquals(new double[]{-3.0, 4.0, 2.0, 1.0}, matrix.rows[1].getCoefficients(), 0.001);
+        assertArrayEquals(new double[]{-5.0, 6.0, 3.0, 0.0}, matrix.rows[2].getCoefficients(), 0.001);
+    }
+
 }

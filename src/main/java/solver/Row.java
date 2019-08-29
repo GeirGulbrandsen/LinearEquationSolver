@@ -1,7 +1,5 @@
 package solver;
 
-import java.util.Arrays;
-
 class Row {
     private String name;
     private int length;
@@ -27,5 +25,11 @@ class Row {
 
     double[] getCoefficients() {
         return coefficients;
+    }
+
+    void swapValues(int val1, int val2) {
+        double temp = coefficients[val1];
+        coefficients[val1] = coefficients[val2];
+        coefficients[val2] = temp;
     }
 }

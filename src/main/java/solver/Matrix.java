@@ -43,5 +43,18 @@ class Matrix {
     int[] getShape() {
         return shape;
     }
+
+    void swapRows(int row1, int row2) {
+        Row tempRow = new Row(rows[row1].getName(), rows[row1].getCoefficients());
+
+        rows[row1] = rows[row2];
+        rows[row2] = tempRow;
+    }
+
+    void swapCols(int col1, int col2) {
+        for (Row row : rows) {
+            row.swapValues(col1, col2);
+        }
+    }
 }
 
