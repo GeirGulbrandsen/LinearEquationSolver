@@ -24,10 +24,10 @@ public class Main {
         Matrix matrix = Matrix.readMatrixFromFile(inputFile);
 
         if (matrix != null) {
-            String solution = gaussJordanElim(matrix);
+            gaussJordanElim(matrix);
 
             try (FileWriter fileWriter = new FileWriter(outputFile)) {
-                for (String str : solution.split(" ")) {
+                for (String str : matrix.getSolution().split(" ")) {
                     fileWriter.write(str + "\n");
                 }
             } catch (IOException e) {

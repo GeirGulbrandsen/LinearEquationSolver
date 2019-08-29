@@ -12,8 +12,7 @@ public class MatrixSwapColsCommand implements Command {
     }
 
     @Override
-    public String execute() {
+    public void execute() {
         this.matrix.swapCols(col1, col2);
-        return "";
     }
 }

@@ -18,8 +18,9 @@ public class SolverCommandTest {
                 new Row("R3", new double[]{3, 6, -5, 0})});
 
         command = new SolverCommand(solver, matrix);
+        command.execute();
 
-        assertEquals("1.00000 2.00000 3.00000", command.execute());
+        assertEquals("1.00000 2.00000 3.00000", matrix.getSolution());
     }
 
 

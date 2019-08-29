@@ -34,7 +34,7 @@ class Solver {
         }
     }
 
-    static String gaussJordanElim(Matrix matrix) {
+    static void gaussJordanElim(Matrix matrix) {
 
         System.out.println("Start solving the equation.\nRows manipulation:");
         for (int pos = 0; pos < matrix.rows[0].getLength() - 1; pos++) {
@@ -56,7 +56,7 @@ class Solver {
             solution.append(" ");
         }
 
-        return solution.toString().trim();
+        matrix.setSolution(solution.toString().trim());
     }
 
     static double findX(double multiplier, double value) {
@@ -76,11 +76,12 @@ class Solver {
                                 .toArray())
         });
 
-        return gaussJordanElim(matrix);
+        gaussJordanElim(matrix);
+        return matrix.getSolution();
     }
 
-    String solveSystem(Matrix matrix) {
-        return gaussJordanElim(matrix);
+    void solveSystem(Matrix matrix) {
+        gaussJordanElim(matrix);
     }
 }
 

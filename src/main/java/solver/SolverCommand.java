@@ -10,7 +10,7 @@ class SolverCommand implements Command {
     }
 
     @Override
-    public String execute() {
-        return solver.solveSystem(matrix);
+    public void execute() {
+        solver.solveSystem(matrix);
     }
 }

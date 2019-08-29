@@ -8,6 +8,7 @@ import java.util.Scanner;
 class Matrix {
     private int[] shape;
     Row[] rows;
+    private String solution;
 
     Matrix(Row[] rows) {
         this.rows = new Row[rows.length];
@@ -55,6 +56,14 @@ class Matrix {
         for (Row row : rows) {
             row.swapValues(col1, col2);
         }
+    }
+
+    String getSolution() {
+        return solution;
+    }
+
+    void setSolution(String solution) {
+        this.solution = solution;
     }
 }
 
