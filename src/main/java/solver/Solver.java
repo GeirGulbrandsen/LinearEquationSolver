@@ -1,7 +1,5 @@
 package solver;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Arrays;
 
 class Solver {
@@ -36,7 +34,7 @@ class Solver {
         }
     }
 
-    static String gaussJordanElim(Matrix matrix, String outputFile) {
+    static String gaussJordanElim(Matrix matrix) {
 
         System.out.println("Start solving the equation.\nRows manipulation:");
         for (int pos = 0; pos < matrix.rows[0].getLength() - 1; pos++) {
@@ -52,11 +50,8 @@ class Solver {
             }
         }
 
-        StringBuilder output = new StringBuilder();
         StringBuilder solution = new StringBuilder();
         for (Row row : matrix.rows) {
-            output.append(row.getValue(row.getLength() - 1));
-            output.append("\n");
             solution.append(String.format("%.5f", row.getValue(row.getLength() - 1)));
             solution.append(" ");
         }
@@ -89,7 +84,7 @@ class Solver {
                                 .toArray())
         });
 
-        return gaussJordanElim(matrix, "out.txt");
+        return gaussJordanElim(matrix);
     }
 
     String solveSystem(Matrix matrix) {

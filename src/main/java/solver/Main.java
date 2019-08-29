@@ -23,7 +23,7 @@ public class Main {
         }
 
         Matrix matrix = Matrix.readMatrixFromFile(inputFile);
-        String solution = gaussJordanElim(matrix, outputFile);
+        String solution = gaussJordanElim(matrix);
 
         try (FileWriter fileWriter = new FileWriter(outputFile)) {
             for (String str : solution.split(" "))

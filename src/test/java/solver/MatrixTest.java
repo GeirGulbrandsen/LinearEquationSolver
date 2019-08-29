@@ -17,7 +17,7 @@ public class MatrixTest {
                 new Row("R2", new double[]{2, 4, -3, 1}),
                 new Row("R3", new double[]{3, 6, -5, 0})});
 
-        gaussJordanElim(matrix, "out.txt");
+        gaussJordanElim(matrix);
 
         assertArrayEquals(new double[]{1.0, 0.0, 0.0, 1.0}, matrix.rows[0].getCoefficients(), 0.001);
         assertArrayEquals(new double[]{0.0, 1.0, 0.0, 2.0}, matrix.rows[1].getCoefficients(), 0.001);
@@ -30,7 +30,7 @@ public class MatrixTest {
                 new Row("R1", new double[]{2, 0, 2}),
                 new Row("R2", new double[]{0, 2, 2})});
 
-        gaussJordanElim(matrix, "out.txt");
+        gaussJordanElim(matrix);
 
         assertArrayEquals(new double[]{1.0, 0.0, 1.0}, matrix.rows[0].getCoefficients(), 0.001);
         assertArrayEquals(new double[]{0.0, 1.0, 1.0}, matrix.rows[1].getCoefficients(), 0.001);
