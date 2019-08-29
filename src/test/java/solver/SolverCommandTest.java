@@ -9,7 +9,7 @@ public class SolverCommandTest {
     @Test
     public void weCanCreateAndExecuteASolverCommand() {
 
-        SolverCommand command;
+        Command command;
 
         Solver solver = new Solver();
         Matrix matrix = new Matrix(new Row[]{

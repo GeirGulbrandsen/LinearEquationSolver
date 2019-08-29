@@ -1,6 +1,6 @@
 package solver;
 
-class SolverCommand {
+class SolverCommand implements Command {
     private Solver solver;
     private Matrix matrix;
 
@@ -9,7 +9,7 @@ class SolverCommand {
         this.matrix = matrix;
     }
 
-    String execute() {
+    public String execute() {
         return solver.solveSystem(matrix);
     }
 }
