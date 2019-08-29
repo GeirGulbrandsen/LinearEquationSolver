@@ -33,15 +33,15 @@ public class MatrixTest {
     }
 
     @Test
-    public void weCanSwapTwoRows() {
+    public void weCanSwapTwoRowsByCommand() {
 
         Matrix matrix = new Matrix(new Row[]{
                 new Row("R1", new double[]{1, 1, 2, 9}),
                 new Row("R2", new double[]{2, 4, -3, 1}),
                 new Row("R3", new double[]{3, 6, -5, 0})});
 
-        Command command = new MatrixSwapRowsCommand(matrix, 0, 1);
-        command.execute();
+        matrix.setCommand(new MatrixSwapRowsCommand(matrix, 0, 1));
+        matrix.processQueue();
 
         assertArrayEquals(new double[]{2.0, 4.0, -3.0, 1.0}, matrix.rows[0].getCoefficients(), 0.001);
         assertArrayEquals(new double[]{1.0, 1.0, 2.0, 9.0}, matrix.rows[1].getCoefficients(), 0.001);
@@ -55,8 +55,8 @@ public class MatrixTest {
                 new Row("R2", new double[]{2, 4, -3, 1}),
                 new Row("R3", new double[]{3, 6, -5, 0})});
 
-        Command command = new MatrixSwapColsCommand(matrix, 0, 2);
-        command.execute();
+        matrix.setCommand(new MatrixSwapColsCommand(matrix, 0, 2));
+        matrix.processQueue();
 
         assertArrayEquals(new double[]{2.0, 1.0, 1.0, 9.0}, matrix.rows[0].getCoefficients(), 0.001);
         assertArrayEquals(new double[]{-3.0, 4.0, 2.0, 1.0}, matrix.rows[1].getCoefficients(), 0.001);

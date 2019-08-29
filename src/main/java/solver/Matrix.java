@@ -9,6 +9,7 @@ class Matrix {
     private int[] shape;
     Row[] rows;
     private String solution;
+    private Command slot;
 
     Matrix(Row[] rows) {
         this.rows = new Row[rows.length];
@@ -64,6 +65,14 @@ class Matrix {
 
     void setSolution(String solution) {
         this.solution = solution;
+    }
+
+    void setCommand(Command slot) {
+        this.slot = slot;
+    }
+
+    void processQueue() {
+        slot.execute();
     }
 }
 
