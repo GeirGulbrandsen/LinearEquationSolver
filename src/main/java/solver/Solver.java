@@ -70,8 +70,6 @@ class Solver {
             System.out.printf("%f ", row.getValue(row.getLength() - 1));
         }
         System.out.print(")\n");
-
-
     }
 
     static double findX(double multiplier, double value) {
