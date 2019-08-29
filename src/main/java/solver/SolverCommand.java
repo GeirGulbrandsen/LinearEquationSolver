@@ -1,15 +1,15 @@
 package solver;
 
-public class SolverCommand {
+class SolverCommand {
     private Solver solver;
     private Matrix matrix;
 
-    public SolverCommand(Solver solver, Matrix matrix) {
+    SolverCommand(Solver solver, Matrix matrix) {
         this.solver = solver;
         this.matrix = matrix;
     }
 
-    public String execute() {
+    String execute() {
         return solver.solveSystem(matrix);
     }
 }

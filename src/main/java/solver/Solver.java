@@ -59,14 +59,6 @@ class Solver {
         return solution.toString().trim();
     }
 
-    private static void printResult(Matrix matrix) {
-        System.out.print("The solution is: (");
-        for (Row row : matrix.rows) {
-            System.out.printf("%f ", row.getValue(row.getLength() - 1));
-        }
-        System.out.print(")\n");
-    }
-
     static double findX(double multiplier, double value) {
         return value / multiplier;
     }
@@ -88,7 +80,7 @@ class Solver {
     }
 
     String solveSystem(Matrix matrix) {
-        return null;
+        return gaussJordanElim(matrix);
     }
 }
 

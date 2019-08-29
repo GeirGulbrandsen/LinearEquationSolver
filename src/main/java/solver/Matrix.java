@@ -35,8 +35,7 @@ class Matrix {
             }
             return new Matrix(rows);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            System.exit(1);
+            System.out.println("Could not open file.");
             return null;
         }
     }
