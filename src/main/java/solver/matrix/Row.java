@@ -1,29 +1,29 @@
-package solver;
+package solver.matrix;
 
-class Row {
+public class Row {
     private String name;
     private int length;
     private double[] coefficients;
 
-    Row(String name, double[] coefficients) {
+    public Row(String name, double[] coefficients) {
         this.coefficients = coefficients;
         this.length = coefficients.length;
         this.name = name;
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 
-    int getLength() {
+    public int getLength() {
         return length;
     }
 
-    double getValue(int pos) {
+    public double getValue(int pos) {
         return coefficients[pos];
     }
 
-    double[] getCoefficients() {
+    public double[] getCoefficients() {
         return coefficients;
     }
 

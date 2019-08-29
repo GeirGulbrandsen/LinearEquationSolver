@@ -1,24 +1,23 @@
-package solver;
+package solver.matrix;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Scanner;
 
-class Matrix {
+public class Matrix {
     private int[] shape;
-    Row[] rows;
+    public Row[] rows;
     private String solution;
-    private Command slot;
 
-    Matrix(Row[] rows) {
+    public Matrix(Row[] rows) {
         this.rows = new Row[rows.length];
         System.arraycopy(rows, 0, this.rows, 0, rows.length);
         System.out.println();
         this.shape = new int[]{this.rows.length, this.rows[0].getLength()};
     }
 
-    static Matrix readMatrixFromFile(String filename) {
+    public static Matrix readMatrixFromFile(String filename) {
         File inputFile = new File(filename);
         Scanner scanner;
         try {
@@ -59,20 +58,12 @@ class Matrix {
         }
     }
 
-    String getSolution() {
+    public String getSolution() {
         return solution;
     }
 
-    void setSolution(String solution) {
+    public void setSolution(String solution) {
         this.solution = solution;
-    }
-
-    void setCommand(Command slot) {
-        this.slot = slot;
-    }
-
-    void processQueue() {
-        slot.execute();
     }
 }
 

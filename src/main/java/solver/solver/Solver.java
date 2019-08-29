@@ -1,10 +1,11 @@
-package solver;
+package solver.solver;
 
+import solver.matrix.*;
 import java.util.Arrays;
 
-class Solver {
+public class Solver {
 
-    static void normaliseRow(Row row, int pos) {
+    public static void normaliseRow(Row row, int pos) {
         double[] a = row.getCoefficients();
         double x = a[pos];
 
@@ -34,7 +35,7 @@ class Solver {
         }
     }
 
-    static void gaussJordanElim(Matrix matrix) {
+    public static void gaussJordanElim(Matrix matrix) {
 
         System.out.println("Start solving the equation.\nRows manipulation:");
         for (int pos = 0; pos < matrix.rows[0].getLength() - 1; pos++) {
@@ -59,11 +60,11 @@ class Solver {
         matrix.setSolution(solution.toString().trim());
     }
 
-    static double findX(double multiplier, double value) {
+    public static double findX(double multiplier, double value) {
         return value / multiplier;
     }
 
-    static String findXandY(String[] abc, String[] def) {
+    public static String findXandY(String[] abc, String[] def) {
 
         Matrix matrix = new Matrix(new Row[]{
                 new Row("R1",

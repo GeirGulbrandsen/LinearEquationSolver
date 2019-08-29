@@ -1,9 +1,14 @@
 package solver;
 
+import solver.commands.CommandCentral;
+import solver.matrix.Matrix;
+import solver.solver.Solver;
+import solver.solver.SolverCommand;
+
 import java.io.FileWriter;
 import java.io.IOException;
 
-import static solver.Solver.gaussJordanElim;
+import static solver.solver.Solver.gaussJordanElim;
 
 public class Main {
     public static void main(String[] args) {
@@ -21,10 +26,13 @@ public class Main {
             }
         }
 
+        CommandCentral comms = new CommandCentral();
+        Solver solver = new Solver();
         Matrix matrix = Matrix.readMatrixFromFile(inputFile);
 
         if (matrix != null) {
-            gaussJordanElim(matrix);
+            comms.setSlot(new SolverCommand(solver, matrix));
+            comms.processComms();
 
             try (FileWriter fileWriter = new FileWriter(outputFile)) {
                 for (String str : matrix.getSolution().split(" ")) {

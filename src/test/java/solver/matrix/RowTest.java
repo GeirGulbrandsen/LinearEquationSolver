@@ -1,9 +1,10 @@
-package solver;
+package solver.matrix;
 
 import org.junit.Test;
+import solver.matrix.Row;
 
 import static org.junit.Assert.assertArrayEquals;
-import static solver.Solver.normaliseRow;
+import static solver.solver.Solver.normaliseRow;
 
 public class RowTest {
 

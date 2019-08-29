@@ -1,4 +1,4 @@
-package solver;
+package solver.commands;
 
 public interface Command {
 

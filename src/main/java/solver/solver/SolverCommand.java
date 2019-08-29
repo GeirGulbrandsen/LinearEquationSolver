@@ -1,10 +1,13 @@
-package solver;
+package solver.solver;
 
-class SolverCommand implements Command {
+import solver.commands.Command;
+import solver.matrix.Matrix;
+
+public class SolverCommand implements Command {
     private Solver solver;
     private Matrix matrix;
 
-    SolverCommand(Solver solver, Matrix matrix) {
+    public SolverCommand(Solver solver, Matrix matrix) {
         this.solver = solver;
         this.matrix = matrix;
     }

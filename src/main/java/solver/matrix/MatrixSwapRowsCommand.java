@@ -1,4 +1,6 @@
-package solver;
+package solver.matrix;
+
+import solver.commands.Command;
 
 public class MatrixSwapRowsCommand implements Command {
     private final Matrix matrix;
