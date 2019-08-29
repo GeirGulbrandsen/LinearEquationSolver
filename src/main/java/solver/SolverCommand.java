@@ -9,6 +9,7 @@ class SolverCommand implements Command {
         this.matrix = matrix;
     }
 
+    @Override
     public String execute() {
         return solver.solveSystem(matrix);
     }
