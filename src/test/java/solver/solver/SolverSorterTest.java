@@ -9,7 +9,7 @@ import static org.junit.Assert.assertArrayEquals;
 public class SolverSorterTest {
 
     @Test
-    public void weCanSortAMatrixAccordingToTheFirstRow() {
+    public void weCanSortAMatrixIfTheFirstElementIsZero() {
         Solver solver = new Solver();
         Matrix matrix = new Matrix(new Row[]{
                 new Row("R1", new double[]{0, 1, 2, 9}),
@@ -24,6 +24,8 @@ public class SolverSorterTest {
     }
 
     private void sortMatrix(Matrix matrix) {
+        matrix.getValue(0, 0);
+
 
     }
 }

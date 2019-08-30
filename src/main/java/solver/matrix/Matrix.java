@@ -65,5 +65,10 @@ public class Matrix {
     public void setSolution(String solution) {
         this.solution = solution;
     }
+
+    public double getValue(int row, int column) {
+
+        return this.rows[row].getValue(column);
+    }
 }
 

@@ -10,7 +10,7 @@ import static solver.matrix.Matrix.readMatrixFromFile;
 public class MatrixTest {
 
     @Test
-    public void readMatrixFromFileTest() {
+    public void weCanReadAMatrixFromFile() {
 
         String inputFile = "src/test/resources/in.txt";
 
@@ -24,7 +24,7 @@ public class MatrixTest {
     }
 
     @Test
-    public void weReturnNullWhenTryingToReadMatrixFromMissingFileTest() {
+    public void weReturnNullWhenTryingToReadMatrixFromMissingFile() {
 
         String inputFile = "src/test/resources/inn.txt";
 
@@ -65,5 +65,15 @@ public class MatrixTest {
         assertArrayEquals(new double[]{2.0, 1.0, 1.0, 9.0}, matrix.rows[0].getCoefficients(), 0.001);
         assertArrayEquals(new double[]{-3.0, 4.0, 2.0, 1.0}, matrix.rows[1].getCoefficients(), 0.001);
         assertArrayEquals(new double[]{-5.0, 6.0, 3.0, 0.0}, matrix.rows[2].getCoefficients(), 0.001);
+    }
+
+    @Test
+    public void getValue() {
+        Matrix matrix = new Matrix(new Row[]{
+                new Row("R1", new double[]{1, 1, 2, 9}),
+                new Row("R2", new double[]{2, 4, -3, 1}),
+                new Row("R3", new double[]{3, 6, -5, 0})});
+
+        assertEquals(6.0, matrix.getValue(2, 1), 0.00001);
     }
 }
