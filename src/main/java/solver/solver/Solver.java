@@ -116,7 +116,11 @@ public class Solver {
     }
 
     public void undoColSwaps(Matrix matrix) {
-        this.undoColSwapList.forEach(System.out::println);
+        int col;
+        while (!undoColSwapList.isEmpty()) {
+            col = undoColSwapList.removeLast();
+            matrix.swapCols(col, col + 1);
+        }
     }
 
     public void solveSystem(Matrix matrix) {

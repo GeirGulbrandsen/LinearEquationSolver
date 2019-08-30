@@ -63,7 +63,7 @@ public class SolverTest {
 
         matrix.print();
 
-        assertArrayEquals(new double[]{1.0, 0.0, 0.0, 4.5}, matrix.rows[0].getCoefficients(), 0.001);
+        assertArrayEquals(new double[]{0.0, 0.0, 1.0, 4.5}, matrix.rows[0].getCoefficients(), 0.001);
         assertArrayEquals(new double[]{0.0, 0.0, 0.0, 14.5}, matrix.rows[1].getCoefficients(), 0.001);
         assertArrayEquals(new double[]{0.0, 0.0, 0.0, 22.5}, matrix.rows[2].getCoefficients(), 0.001);
     }
