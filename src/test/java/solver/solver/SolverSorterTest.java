@@ -36,6 +36,20 @@ public class SolverSorterTest {
         assertArrayEquals(new double[]{-5.0, 0.0, 0.0, 0.0}, matrix.rows[2].getCoefficients(), 0.001);
     }
 
+    @Test
+    public void weHandleAllZeroMatrixes() {
+        Matrix matrix = new Matrix(new Row[]{
+                new Row("R1", new double[]{0, 0, 0, 0}),
+                new Row("R2", new double[]{0, 0, 0, 0}),
+                new Row("R3", new double[]{0, 0, 0, 0})});
+
+        sortMatrix(matrix, 0);
+
+        assertArrayEquals(new double[]{0.0, 0.0, 0.0, 0.0}, matrix.rows[0].getCoefficients(), 0.001);
+        assertArrayEquals(new double[]{0.0, 0.0, 0.0, 0.0}, matrix.rows[1].getCoefficients(), 0.001);
+        assertArrayEquals(new double[]{0.0, 0.0, 0.0, 0.0}, matrix.rows[2].getCoefficients(), 0.001);
+    }
+
     private void sortMatrix(Matrix matrix, int col) {
         if (matrix.getValue(0, col) == 0) {
             for (int i = 1; i < matrix.getShape()[0]; i++) {
@@ -45,7 +59,7 @@ public class SolverSorterTest {
                 }
             }
         }
-        if (matrix.getValue(0, col) == 0) {
+        if (matrix.getValue(0, col) == 0 && col < matrix.getShape()[1]-1) {
             sortMatrix(matrix, col + 1);
             matrix.swapCols(col + 1, col);
         }
