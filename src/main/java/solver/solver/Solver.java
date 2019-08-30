@@ -1,25 +1,36 @@
 package solver.solver;
 
 import solver.commands.CommandCentral;
+import solver.commands.SolverEliminationCommand;
 import solver.commands.SolverSortMatrixCommand;
+import solver.commands.SolverUndoColSwapsCommand;
 import solver.matrix.Matrix;
 import solver.matrix.Row;
 
+import java.util.ArrayDeque;
 import java.util.Arrays;
 
 public class Solver {
-    private CommandCentral coms = new CommandCentral();
+    private CommandCentral coms;
+    private ArrayDeque<Integer> undoColSwapList;
+
+    public Solver() {
+        coms = new CommandCentral();
+        undoColSwapList = new ArrayDeque<>();
+    }
 
     public static void normaliseRow(Row row, int pos) {
         double[] a = row.getCoefficients();
         double x = a[pos];
 
-        System.out.printf("%.2f * %s -> %s\n", 1 / x, row.getName(), row.getName());
+        if (x != 0.0) {
+            System.out.printf("%.2f * %s -> %s\n", 1 / x, row.getName(), row.getName());
 
-        for (int i = 0; i < a.length; i++) {
-            a[i] = a[i] / x;
-            if (a[i] == -0.0) {
-                a[i] = 0.0;
+            for (int i = 0; i < a.length; i++) {
+                a[i] = a[i] / x;
+                if (a[i] == -0.0) {
+                    a[i] = 0.0;
+                }
             }
         }
     }
@@ -36,6 +47,7 @@ public class Solver {
         if (matrix.getValue(0, col) == 0 && col < matrix.getShape()[1] - 1) {
             sortMatrix(matrix, col + 1);
             matrix.swapCols(col + 1, col);
+            this.undoColSwapList.add(col);
         }
     }
 
@@ -45,17 +57,19 @@ public class Solver {
 
         double x;
 
-        x = -b[pos] / a[pos];
+        if (a[pos] != 0.0) {
+            x = -b[pos] / a[pos];
 
-        System.out.printf("%.2f * %s + %s -> %s\n",
-                x, rowA.getName(), rowB.getName(), rowB.getName());
+            System.out.printf("%.2f * %s + %s -> %s\n",
+                    x, rowA.getName(), rowB.getName(), rowB.getName());
 
-        for (int i = 0; i < b.length; i++) {
-            b[i] += a[i] * x;
+            for (int i = 0; i < b.length; i++) {
+                b[i] += a[i] * x;
+            }
         }
     }
 
-    void gaussJordanElim(Matrix matrix) {
+    public void gaussJordanElim(Matrix matrix) {
 
         System.out.println("Start solving the equation.\nRows manipulation:");
         for (int pos = 0; pos < matrix.rows[0].getLength() - 1; pos++) {
@@ -101,9 +115,14 @@ public class Solver {
         return matrix.getSolution();
     }
 
+    public void undoColSwaps(Matrix matrix) {
+        this.undoColSwapList.forEach(System.out::println);
+    }
+
     public void solveSystem(Matrix matrix) {
         coms.addCmd(new SolverSortMatrixCommand(this, matrix));
         coms.addCmd(new SolverEliminationCommand(this, matrix));
+        coms.addCmd(new SolverUndoColSwapsCommand(this, matrix));
         coms.processCmds();
     }
 }
