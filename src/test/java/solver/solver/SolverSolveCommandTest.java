@@ -19,8 +19,8 @@ public class SolverSolveCommandTest {
                 new Row("R2", new double[]{2, 4, -3, 1}),
                 new Row("R3", new double[]{3, 6, -5, 0})});
 
-        comms.setSlot(new SolverSolveCommand(solver, matrix));
-        comms.processComms();
+        comms.addCmd(new SolverSolveCommand(solver, matrix));
+        comms.processCmds();
 
         assertEquals("1.00000 2.00000 3.00000", matrix.getSolution());
     }

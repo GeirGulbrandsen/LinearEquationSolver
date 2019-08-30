@@ -1,6 +1,6 @@
 package solver.solver;
 
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 import solver.commands.CommandCentral;
 import solver.commands.SolverSortMatrixCommand;
@@ -13,8 +13,8 @@ public class SolverSorterTest {
     private static Solver solver;
     private static CommandCentral coms;
 
-    @BeforeClass
-    public static void setUp() {
+    @Before
+    public void setUp() {
         solver = new Solver();
         coms = new CommandCentral();
     }
@@ -26,8 +26,8 @@ public class SolverSorterTest {
                 new Row("R2", new double[]{0, 4, -3, 1}),
                 new Row("R3", new double[]{3, 6, -5, 0})});
 
-        coms.setSlot(new SolverSortMatrixCommand(solver, matrix));
-        coms.processComms();
+        coms.addCmd(new SolverSortMatrixCommand(solver, matrix));
+        coms.processCmds();
 
         assertArrayEquals(new double[]{3.0, 6.0, -5.0, 0.0}, matrix.rows[0].getCoefficients(), 0.001);
         assertArrayEquals(new double[]{0.0, 4.0, -3.0, 1.0}, matrix.rows[1].getCoefficients(), 0.001);
@@ -41,8 +41,8 @@ public class SolverSorterTest {
                 new Row("R2", new double[]{0, 0, -3, 1}),
                 new Row("R3", new double[]{0, 0, -5, 0})});
 
-        coms.setSlot(new SolverSortMatrixCommand(solver, matrix));
-        coms.processComms();
+        coms.addCmd(new SolverSortMatrixCommand(solver, matrix));
+        coms.processCmds();
 
         assertArrayEquals(new double[]{2.0, 0.0, 0.0, 9.0}, matrix.rows[0].getCoefficients(), 0.001);
         assertArrayEquals(new double[]{-3.0, 0.0, 0.0, 1.0}, matrix.rows[1].getCoefficients(), 0.001);
@@ -57,7 +57,7 @@ public class SolverSorterTest {
                 new Row("R3", new double[]{0, 0, 0, 0})});
 
         coms.setSlot(new SolverSortMatrixCommand(solver, matrix));
-        coms.processComms();
+        coms.processCmds();
 
         assertArrayEquals(new double[]{0.0, 0.0, 0.0, 0.0}, matrix.rows[0].getCoefficients(), 0.001);
         assertArrayEquals(new double[]{0.0, 0.0, 0.0, 0.0}, matrix.rows[1].getCoefficients(), 0.001);

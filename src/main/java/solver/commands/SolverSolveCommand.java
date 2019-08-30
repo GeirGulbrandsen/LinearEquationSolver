@@ -14,6 +14,6 @@ public class SolverSolveCommand implements Command {
 
     @Override
     public void execute() {
-        solver.solveSystem(matrix);
+        this.solver.solveSystem(matrix);
     }
 }

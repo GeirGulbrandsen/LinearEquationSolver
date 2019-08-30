@@ -44,8 +44,8 @@ public class MatrixTest {
                 new Row("R2", new double[]{2, 4, -3, 1}),
                 new Row("R3", new double[]{3, 6, -5, 0})});
 
-        comms.setSlot(new MatrixSwapRowsCommand(matrix, 0, 1));
-        comms.processComms();
+        comms.addCmd(new MatrixSwapRowsCommand(matrix, 0, 1));
+        comms.processCmds();
 
         assertArrayEquals(new double[]{2.0, 4.0, -3.0, 1.0}, matrix.rows[0].getCoefficients(), 0.001);
         assertArrayEquals(new double[]{1.0, 1.0, 2.0, 9.0}, matrix.rows[1].getCoefficients(), 0.001);
@@ -61,8 +61,8 @@ public class MatrixTest {
                 new Row("R2", new double[]{2, 4, -3, 1}),
                 new Row("R3", new double[]{3, 6, -5, 0})});
 
-        comms.setSlot(new MatrixSwapColsCommand(matrix, 0, 2));
-        comms.processComms();
+        comms.addCmd(new MatrixSwapColsCommand(matrix, 0, 2));
+        comms.processCmds();
 
         assertArrayEquals(new double[]{2.0, 1.0, 1.0, 9.0}, matrix.rows[0].getCoefficients(), 0.001);
         assertArrayEquals(new double[]{-3.0, 4.0, 2.0, 1.0}, matrix.rows[1].getCoefficients(), 0.001);

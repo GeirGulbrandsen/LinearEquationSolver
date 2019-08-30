@@ -28,8 +28,8 @@ public class SolverTest {
                 new Row("R2", new double[]{2, 4, -3, 1}),
                 new Row("R3", new double[]{3, 6, -5, 0})});
 
-        comms.setSlot(new SolverSolveCommand(solver, matrix));
-        comms.processComms();
+        comms.addCmd(new SolverSolveCommand(solver, matrix));
+        comms.processCmds();
 
         assertArrayEquals(new double[]{1.0, 0.0, 0.0, 1.0}, matrix.rows[0].getCoefficients(), 0.001);
         assertArrayEquals(new double[]{0.0, 1.0, 0.0, 2.0}, matrix.rows[1].getCoefficients(), 0.001);
@@ -42,8 +42,8 @@ public class SolverTest {
                 new Row("R1", new double[]{2, 0, 2}),
                 new Row("R2", new double[]{0, 2, 2})});
 
-        comms.setSlot(new SolverSolveCommand(solver, matrix));
-        comms.processComms();
+        comms.addCmd(new SolverSolveCommand(solver, matrix));
+        comms.processCmds();
 
 
         assertArrayEquals(new double[]{1.0, 0.0, 1.0}, matrix.rows[0].getCoefficients(), 0.001);

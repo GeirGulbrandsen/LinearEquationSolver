@@ -29,8 +29,8 @@ public class Main {
         Matrix matrix = Matrix.readMatrixFromFile(inputFile);
 
         if (matrix != null) {
-            comms.setSlot(new SolverSolveCommand(solver, matrix));
-            comms.processComms();
+            comms.addCmd(new SolverSolveCommand(solver, matrix));
+            comms.processCmds();
 
             try (FileWriter fileWriter = new FileWriter(outputFile)) {
                 for (String str : matrix.getSolution().split(" ")) {

@@ -1,9 +1,14 @@
 package solver.solver;
 
+import solver.commands.CommandCentral;
+import solver.commands.SolverSolveCommand;
+import solver.commands.SolverSortMatrixCommand;
 import solver.matrix.*;
+
 import java.util.Arrays;
 
 public class Solver {
+    private CommandCentral coms = new CommandCentral();
 
     public static void normaliseRow(Row row, int pos) {
         double[] a = row.getCoefficients();
@@ -28,7 +33,7 @@ public class Solver {
                 }
             }
         }
-        if (matrix.getValue(0, col) == 0 && col < matrix.getShape()[1]-1) {
+        if (matrix.getValue(0, col) == 0 && col < matrix.getShape()[1] - 1) {
             sortMatrix(matrix, col + 1);
             matrix.swapCols(col + 1, col);
         }
@@ -50,7 +55,7 @@ public class Solver {
         }
     }
 
-    private static void gaussJordanElim(Matrix matrix) {
+    static void gaussJordanElim(Matrix matrix) {
 
         System.out.println("Start solving the equation.\nRows manipulation:");
         for (int pos = 0; pos < matrix.rows[0].getLength() - 1; pos++) {
@@ -97,7 +102,10 @@ public class Solver {
     }
 
     public void solveSystem(Matrix matrix) {
-        gaussJordanElim(matrix);
+
+        coms.addCmd(new SolverSortMatrixCommand(this, matrix));
+        coms.addCmd(new SolverEliminationCommand(this, matrix));
+        coms.processCmds();
     }
 }
 
