@@ -67,7 +67,6 @@ public class Matrix {
     }
 
     public double getValue(int row, int column) {
-
         return this.rows[row].getValue(column);
     }
 }
