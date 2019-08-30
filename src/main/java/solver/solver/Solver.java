@@ -13,10 +13,21 @@ import java.util.Arrays;
 public class Solver {
     private CommandCentral coms;
     private ArrayDeque<Integer> undoColSwapList;
+    private boolean hasNoSolution = false;
+    private boolean hasInfiniteSolutions = false;
+
 
     public Solver() {
         coms = new CommandCentral();
         undoColSwapList = new ArrayDeque<>();
+    }
+
+    boolean hasNoSolution() {
+        return hasNoSolution;
+    }
+
+    public boolean hasInfiniteSolutions() {
+        return hasInfiniteSolutions;
     }
 
     public static void normaliseRow(Row row, int pos) {
@@ -121,6 +132,26 @@ public class Solver {
             col = undoColSwapList.removeLast();
             matrix.swapCols(col, col + 1);
         }
+    }
+
+    public void checkForNoSolution(Matrix matrix) {
+        boolean hasSolution = true;
+        for (Row row : matrix.rows) {
+            int i = 0;
+            boolean zeroRow = true;
+            while (i < row.getLength() - 1) {
+                if (row.getCoefficients()[i] != 0.0) {
+                    zeroRow = false;
+                }
+                i++;
+            }
+            if (zeroRow) {
+                if (row.getCoefficients()[row.getLength() - 1] != 0.0) {
+                    hasSolution = false;
+                }
+            }
+        }
+        hasNoSolution = !hasSolution;
     }
 
     public void solveSystem(Matrix matrix) {

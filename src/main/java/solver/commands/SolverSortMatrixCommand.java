@@ -15,5 +15,6 @@ public class SolverSortMatrixCommand implements Command {
     @Override
     public void execute() {
         this.solver.sortMatrix(matrix, 0);
+        this.solver.checkForNoSolution(matrix);
     }
 }
