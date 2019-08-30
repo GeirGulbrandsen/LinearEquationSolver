@@ -1,5 +1,6 @@
 package solver.solver;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 import solver.matrix.Matrix;
 import solver.matrix.Row;
@@ -7,10 +8,15 @@ import solver.matrix.Row;
 import static org.junit.Assert.assertArrayEquals;
 
 public class SolverSorterTest {
+    private static Solver solver;
+
+    @BeforeClass
+    public static void setUp() {
+        solver = new Solver();
+    }
 
     @Test
     public void weCanScanThroughMultipleRowsForNonZeroElementAndSwap() {
-        Solver solver = new Solver();
         Matrix matrix = new Matrix(new Row[]{
                 new Row("R1", new double[]{0, 1, 2, 9}),
                 new Row("R2", new double[]{0, 4, -3, 1}),
@@ -25,7 +31,6 @@ public class SolverSorterTest {
 
     @Test
     public void weCanSortAMatrixIfAllTheFirstElementIsZeroInMultipleColumns() {
-        Solver solver = new Solver();
         Matrix matrix = new Matrix(new Row[]{
                 new Row("R1", new double[]{0, 0, 2, 9}),
                 new Row("R2", new double[]{0, 0, -3, 1}),
@@ -40,7 +45,6 @@ public class SolverSorterTest {
 
     @Test
     public void weHandleAllZeroMatrixes() {
-        Solver solver = new Solver();
         Matrix matrix = new Matrix(new Row[]{
                 new Row("R1", new double[]{0, 0, 0, 0}),
                 new Row("R2", new double[]{0, 0, 0, 0}),
