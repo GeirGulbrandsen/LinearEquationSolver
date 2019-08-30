@@ -52,7 +52,7 @@ public class Matrix {
         rows[row2] = tempRow;
     }
 
-    void swapCols(int col1, int col2) {
+    public void swapCols(int col1, int col2) {
         for (Row row : rows) {
             row.swapValues(col1, col2);
         }
