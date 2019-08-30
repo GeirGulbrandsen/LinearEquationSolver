@@ -1,7 +1,7 @@
 package solver;
 
 import solver.commands.CommandCentral;
-import solver.commands.SolverCommand;
+import solver.commands.SolverSolveCommand;
 import solver.matrix.Matrix;
 import solver.solver.Solver;
 
@@ -29,7 +29,7 @@ public class Main {
         Matrix matrix = Matrix.readMatrixFromFile(inputFile);
 
         if (matrix != null) {
-            comms.setSlot(new SolverCommand(solver, matrix));
+            comms.setSlot(new SolverSolveCommand(solver, matrix));
             comms.processComms();
 
             try (FileWriter fileWriter = new FileWriter(outputFile)) {

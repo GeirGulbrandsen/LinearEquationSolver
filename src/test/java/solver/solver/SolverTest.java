@@ -3,7 +3,7 @@ package solver.solver;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import solver.commands.CommandCentral;
-import solver.commands.SolverCommand;
+import solver.commands.SolverSolveCommand;
 import solver.matrix.Matrix;
 import solver.matrix.Row;
 
@@ -28,7 +28,7 @@ public class SolverTest {
                 new Row("R2", new double[]{2, 4, -3, 1}),
                 new Row("R3", new double[]{3, 6, -5, 0})});
 
-        comms.setSlot(new SolverCommand(solver, matrix));
+        comms.setSlot(new SolverSolveCommand(solver, matrix));
         comms.processComms();
 
         assertArrayEquals(new double[]{1.0, 0.0, 0.0, 1.0}, matrix.rows[0].getCoefficients(), 0.001);
@@ -42,7 +42,7 @@ public class SolverTest {
                 new Row("R1", new double[]{2, 0, 2}),
                 new Row("R2", new double[]{0, 2, 2})});
 
-        comms.setSlot(new SolverCommand(solver, matrix));
+        comms.setSlot(new SolverSolveCommand(solver, matrix));
         comms.processComms();
 
 

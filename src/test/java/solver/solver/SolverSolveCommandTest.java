@@ -2,13 +2,13 @@ package solver.solver;
 
 import org.junit.Test;
 import solver.commands.CommandCentral;
-import solver.commands.SolverCommand;
+import solver.commands.SolverSolveCommand;
 import solver.matrix.Matrix;
 import solver.matrix.Row;
 
 import static org.junit.Assert.assertEquals;
 
-public class SolverCommandTest {
+public class SolverSolveCommandTest {
 
     @Test
     public void weCanCreateAndExecuteASolverCommand() {
@@ -19,7 +19,7 @@ public class SolverCommandTest {
                 new Row("R2", new double[]{2, 4, -3, 1}),
                 new Row("R3", new double[]{3, 6, -5, 0})});
 
-        comms.setSlot(new SolverCommand(solver, matrix));
+        comms.setSlot(new SolverSolveCommand(solver, matrix));
         comms.processComms();
 
         assertEquals("1.00000 2.00000 3.00000", matrix.getSolution());
