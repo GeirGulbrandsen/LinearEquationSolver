@@ -1,9 +1,9 @@
 package solver.solver;
 
 import solver.commands.CommandCentral;
-import solver.commands.SolverSolveCommand;
 import solver.commands.SolverSortMatrixCommand;
-import solver.matrix.*;
+import solver.matrix.Matrix;
+import solver.matrix.Row;
 
 import java.util.Arrays;
 
@@ -39,7 +39,7 @@ public class Solver {
         }
     }
 
-    private static void gaussJordanElimRow(Row rowA, Row rowB, int pos) {
+    private void gaussJordanElimRow(Row rowA, Row rowB, int pos) {
         double[] a = rowA.getCoefficients();
         double[] b = rowB.getCoefficients();
 
@@ -55,7 +55,7 @@ public class Solver {
         }
     }
 
-    static void gaussJordanElim(Matrix matrix) {
+    void gaussJordanElim(Matrix matrix) {
 
         System.out.println("Start solving the equation.\nRows manipulation:");
         for (int pos = 0; pos < matrix.rows[0].getLength() - 1; pos++) {
@@ -80,11 +80,11 @@ public class Solver {
         matrix.setSolution(solution.toString().trim());
     }
 
-    public static double findX(double multiplier, double value) {
+    public double findX(double multiplier, double value) {
         return value / multiplier;
     }
 
-    public static String findXandY(String[] abc, String[] def) {
+    public String findXandY(String[] abc, String[] def) {
 
         Matrix matrix = new Matrix(new Row[]{
                 new Row("R1",

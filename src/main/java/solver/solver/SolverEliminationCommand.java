@@ -14,6 +14,6 @@ public class SolverEliminationCommand implements Command {
 
     @Override
     public void execute() {
-        Solver.gaussJordanElim(matrix);
+        solver.gaussJordanElim(matrix);
     }
 }
