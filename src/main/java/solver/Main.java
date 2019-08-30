@@ -1,14 +1,12 @@
 package solver;
 
 import solver.commands.CommandCentral;
+import solver.commands.SolverCommand;
 import solver.matrix.Matrix;
 import solver.solver.Solver;
-import solver.solver.SolverCommand;
 
 import java.io.FileWriter;
 import java.io.IOException;
-
-import static solver.solver.Solver.gaussJordanElim;
 
 public class Main {
     public static void main(String[] args) {

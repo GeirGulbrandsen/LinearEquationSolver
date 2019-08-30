@@ -2,6 +2,8 @@ package solver.matrix;
 
 import org.junit.Test;
 import solver.commands.CommandCentral;
+import solver.commands.MatrixSwapColsCommand;
+import solver.commands.MatrixSwapRowsCommand;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;

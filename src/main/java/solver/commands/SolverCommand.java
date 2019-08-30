@@ -1,7 +1,7 @@
-package solver.solver;
+package solver.commands;
 
-import solver.commands.Command;
 import solver.matrix.Matrix;
+import solver.solver.Solver;
 
 public class SolverCommand implements Command {
     private Solver solver;

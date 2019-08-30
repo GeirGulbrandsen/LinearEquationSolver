@@ -19,7 +19,7 @@ public class Solver {
         }
     }
 
-    void sortMatrix(Matrix matrix, int col) {
+    public void sortMatrix(Matrix matrix, int col) {
         if (matrix.getValue(0, col) == 0) {
             for (int i = 1; i < matrix.getShape()[0]; i++) {
                 if (matrix.getValue(i, 0) != 0) {
@@ -50,7 +50,7 @@ public class Solver {
         }
     }
 
-    public static void gaussJordanElim(Matrix matrix) {
+    private static void gaussJordanElim(Matrix matrix) {
 
         System.out.println("Start solving the equation.\nRows manipulation:");
         for (int pos = 0; pos < matrix.rows[0].getLength() - 1; pos++) {
@@ -96,7 +96,7 @@ public class Solver {
         return matrix.getSolution();
     }
 
-    void solveSystem(Matrix matrix) {
+    public void solveSystem(Matrix matrix) {
         gaussJordanElim(matrix);
     }
 }
