@@ -102,7 +102,6 @@ public class Solver {
     }
 
     public void solveSystem(Matrix matrix) {
-
         coms.addCmd(new SolverSortMatrixCommand(this, matrix));
         coms.addCmd(new SolverEliminationCommand(this, matrix));
         coms.processCmds();
