@@ -3,6 +3,7 @@ package solver.solver;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import solver.commands.CommandCentral;
+import solver.commands.SolverCommand;
 import solver.matrix.Matrix;
 import solver.matrix.Row;
 
