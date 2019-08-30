@@ -41,11 +41,11 @@ public class Matrix {
         }
     }
 
-    int[] getShape() {
+    public int[] getShape() {
         return shape;
     }
 
-    void swapRows(int row1, int row2) {
+    public void swapRows(int row1, int row2) {
         Row tempRow = new Row(rows[row1].getName(), rows[row1].getCoefficients());
 
         rows[row1] = rows[row2];
