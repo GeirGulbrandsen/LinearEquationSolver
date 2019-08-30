@@ -56,7 +56,7 @@ public class SolverSorterTest {
                 new Row("R2", new double[]{0, 0, 0, 0}),
                 new Row("R3", new double[]{0, 0, 0, 0})});
 
-        coms.setSlot(new SolverSortMatrixCommand(solver, matrix));
+        coms.addCmd(new SolverSortMatrixCommand(solver, matrix));
         coms.processCmds();
 
         assertArrayEquals(new double[]{0.0, 0.0, 0.0, 0.0}, matrix.rows[0].getCoefficients(), 0.001);

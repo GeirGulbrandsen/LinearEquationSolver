@@ -4,15 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommandCentral {
-    private Command slot;
     private List<Command> commands;
 
     public CommandCentral() {
         this.commands = new ArrayList<>();
-    }
-
-    public void setSlot(Command slot) {
-        this.slot = slot;
     }
 
     public void processCmds() {
