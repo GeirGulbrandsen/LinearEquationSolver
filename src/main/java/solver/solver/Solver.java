@@ -19,6 +19,21 @@ public class Solver {
         }
     }
 
+    void sortMatrix(Matrix matrix, int col) {
+        if (matrix.getValue(0, col) == 0) {
+            for (int i = 1; i < matrix.getShape()[0]; i++) {
+                if (matrix.getValue(i, 0) != 0) {
+                    matrix.swapRows(i, 0);
+                    break;
+                }
+            }
+        }
+        if (matrix.getValue(0, col) == 0 && col < matrix.getShape()[1]-1) {
+            sortMatrix(matrix, col + 1);
+            matrix.swapCols(col + 1, col);
+        }
+    }
+
     private static void gaussJordanElimRow(Row rowA, Row rowB, int pos) {
         double[] a = rowA.getCoefficients();
         double[] b = rowB.getCoefficients();
