@@ -16,5 +16,9 @@ public class SolverSortMatrixCommand implements Command {
     public void execute() {
         this.solver.sortMatrix(matrix, 0);
         this.solver.checkForNoSolution(matrix);
+        if (this.solver.hasNoSolution()) {
+            this.solver.checkForInfiniteSolutions(matrix);
+
+        }
     }
 }

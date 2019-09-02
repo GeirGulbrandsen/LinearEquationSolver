@@ -16,17 +16,16 @@ public class Solver {
     private boolean hasNoSolution = false;
     private boolean hasInfiniteSolutions = false;
 
-
     public Solver() {
         coms = new CommandCentral();
         undoColSwapList = new ArrayDeque<>();
     }
 
-    boolean hasNoSolution() {
+    public boolean hasNoSolution() {
         return hasNoSolution;
     }
 
-    public boolean hasInfiniteSolutions() {
+    boolean hasInfiniteSolutions() {
         return hasInfiniteSolutions;
     }
 
@@ -152,6 +151,25 @@ public class Solver {
             }
         }
         hasNoSolution = !hasSolution;
+    }
+
+    public void checkForInfiniteSolutions(Matrix matrix) {
+        int significantEquations = 0;
+        for (Row row : matrix.rows) {
+            boolean isAllZeros = true;
+            for (double coeff : row.getCoefficients()) {
+                if (coeff != 0.0) {
+                    isAllZeros = false;
+                    break;
+                }
+            }
+            if (!isAllZeros) {
+                significantEquations++;
+            }
+        }
+        if (significantEquations < matrix.getShape()[1]-1) {
+            hasInfiniteSolutions = true;
+        }
     }
 
     public void solveSystem(Matrix matrix) {

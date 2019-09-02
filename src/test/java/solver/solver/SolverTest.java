@@ -78,7 +78,21 @@ public class SolverTest {
 
         solver.checkForNoSolution(matrix);
 
-        assertTrue(solver.hasNoSolution());
+        assertTrue("The System has a solution.", solver.hasNoSolution());
+    }
+
+    @Test
+    public void weCanDetectEquationsWithInfiniteSolutions() {
+        Matrix matrix = new Matrix(new Row[]{
+                new Row("R1", new double[]{1, 3, 4, 5}),
+                new Row("R2", new double[]{0, 1, 5, 5}),
+                new Row("R3", new double[]{0, 0, 0, 0}),
+                new Row("R4", new double[]{0, 0, 0, 0}),
+                new Row("R5", new double[]{0, 0, 0, 0})});
+
+        solver.checkForInfiniteSolutions(matrix);
+
+        assertTrue("System has less than infinite solutions.", solver.hasInfiniteSolutions());
     }
 
 }
