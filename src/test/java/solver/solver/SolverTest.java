@@ -94,5 +94,4 @@ public class SolverTest {
 
         assertTrue("System has less than infinite solutions.", solver.hasInfiniteSolutions());
     }
-
 }
