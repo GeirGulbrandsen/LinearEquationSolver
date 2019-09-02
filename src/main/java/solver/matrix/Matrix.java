@@ -22,18 +22,20 @@ public class Matrix {
         Scanner scanner;
         try {
             scanner = new Scanner(inputFile);
-            int variables = scanner.nextInt();
+            scanner.nextInt();
+            int equations = scanner.nextInt();
             scanner.nextLine();
 
-            Row[] rows = new Row[variables];
+            Row[] rows = new Row[equations];
 
-            for (int i = 0; i < variables; i++) {
+            for (int i = 0; i < equations; i++) {
                 rows[i] = new Row("R" + (i + 1),
                         Arrays.stream(scanner.nextLine()
                                 .split(" "))
                                 .mapToDouble(Double::parseDouble)
                                 .toArray());
             }
+            scanner.close();
             return new Matrix(rows);
         } catch (FileNotFoundException e) {
             System.out.println("Could not open file.");

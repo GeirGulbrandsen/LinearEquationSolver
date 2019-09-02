@@ -16,6 +16,6 @@ public class SolverTest {
     public void findXandY() {
         String[] abc = {"4", "5", "7"};
         String[] def = {"3", "9", "9"};
-        assertThat(new Solver().findXandY(abc, def), is("0.85714 0.71429"));
+        assertThat(new Solver().findXandY(abc, def), is("0.85714\n0.71429"));
     }
 }

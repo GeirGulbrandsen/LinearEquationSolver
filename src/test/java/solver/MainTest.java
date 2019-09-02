@@ -15,4 +15,16 @@ public class MainTest {
         Main.main(new String[]{"-in", "src/test/resources/in20.txt", "-out", "out.txt"});
 
     }
+
+    @Test
+    public void testMain6x6() {
+        Main.main(new String[]{"-in", "src/test/resources/in6x6.txt", "-out", "out.txt"});
+
+    }
+
+    @Test
+    public void testMain4x4NoSolution() {
+        Main.main(new String[]{"-in", "src/test/resources/4x4NoSolution.txt", "-out", "out.txt"});
+
+    }
 }

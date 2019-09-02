@@ -33,9 +33,7 @@ public class Main {
             comms.processCmds();
 
             try (FileWriter fileWriter = new FileWriter(outputFile)) {
-                for (String str : matrix.getSolution().split(" ")) {
-                    fileWriter.write(str + "\n");
-                }
+                fileWriter.write(solver.getSolution());
             } catch (IOException e) {
                 System.out.println("Could not open file");
             }

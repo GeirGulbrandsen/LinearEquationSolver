@@ -15,13 +15,14 @@ public class Solver {
     private ArrayDeque<Integer> undoColSwapList;
     private boolean hasNoSolution = false;
     private boolean hasInfiniteSolutions = false;
+    private String solution = "";
 
     public Solver() {
         coms = new CommandCentral();
         undoColSwapList = new ArrayDeque<>();
     }
 
-    public boolean hasNoSolution() {
+    boolean hasNoSolution() {
         return hasNoSolution;
     }
 
@@ -46,18 +47,21 @@ public class Solver {
     }
 
     public void sortMatrix(Matrix matrix, int col) {
-        if (matrix.getValue(0, col) == 0) {
-            for (int i = 1; i < matrix.getShape()[0]; i++) {
-                if (matrix.getValue(i, 0) != 0) {
-                    matrix.swapRows(i, 0);
-                    break;
+        for (int i = col; i < matrix.getShape()[1] - 1; i++) {
+            if (matrix.getValue(i, col) == 0d) {
+                for (int j = i + 1; j <= matrix.getShape()[0] - 1; j++) {
+                    if (matrix.getValue(j, col) != 0) {
+                        matrix.swapRows(j, col);
+                        break;
+                    }
+                }
+                if (matrix.getValue(col, col) == 0 && col < matrix.getShape()[1] - 2) {
+                    sortMatrix(matrix, col + 1);
+                    matrix.swapCols(col + 1, col);
+                    this.undoColSwapList.add(col);
                 }
             }
-        }
-        if (matrix.getValue(0, col) == 0 && col < matrix.getShape()[1] - 1) {
-            sortMatrix(matrix, col + 1);
-            matrix.swapCols(col + 1, col);
-            this.undoColSwapList.add(col);
+            col++;
         }
     }
 
@@ -89,19 +93,29 @@ public class Solver {
             }
         }
 
-        for (int pos = matrix.rows[0].getLength() - 2; pos > 0; pos--) {
-            for (int row = pos - 1; row >= 0; row--) {
-                gaussJordanElimRow(matrix.rows[pos], matrix.rows[row], pos);
+        this.checkForNoSolution(matrix);
+        if (this.hasNoSolution()) {
+            solution = "No solutions";
+        } else {
+            this.checkForInfiniteSolutions(matrix);
+            if (this.hasInfiniteSolutions) {
+                solution = "Infinitely many solutions";
+            } else {
+                for (int pos = matrix.rows[0].getLength() - 2; pos > 0; pos--) {
+                    for (int row = pos - 1; row >= 0; row--) {
+                        gaussJordanElimRow(matrix.rows[pos], matrix.rows[row], pos);
+                    }
+                }
+                StringBuilder buildSolution = new StringBuilder();
+                for (Row row : matrix.rows) {
+                    String str = (String.format("%.5f", row.getValue(row.getLength() - 1)));
+                    if (Double.parseDouble(str) != 0.0) {
+                        solution = String.format("%s%s\n", solution, str);
+                    }
+                }
             }
         }
-
-        StringBuilder solution = new StringBuilder();
-        for (Row row : matrix.rows) {
-            solution.append(String.format("%.5f", row.getValue(row.getLength() - 1)));
-            solution.append(" ");
-        }
-
-        matrix.setSolution(solution.toString().trim());
+        matrix.setSolution(solution.trim());
     }
 
     public double findX(double multiplier, double value) {
@@ -133,7 +147,7 @@ public class Solver {
         }
     }
 
-    public void checkForNoSolution(Matrix matrix) {
+    void checkForNoSolution(Matrix matrix) {
         boolean hasSolution = true;
         for (Row row : matrix.rows) {
             int i = 0;
@@ -153,7 +167,7 @@ public class Solver {
         hasNoSolution = !hasSolution;
     }
 
-    public void checkForInfiniteSolutions(Matrix matrix) {
+    void checkForInfiniteSolutions(Matrix matrix) {
         int significantEquations = 0;
         for (Row row : matrix.rows) {
             boolean isAllZeros = true;
@@ -167,7 +181,7 @@ public class Solver {
                 significantEquations++;
             }
         }
-        if (significantEquations < matrix.getShape()[1]-1) {
+        if (significantEquations < matrix.getShape()[1] - 1) {
             hasInfiniteSolutions = true;
         }
     }
@@ -175,8 +189,20 @@ public class Solver {
     public void solveSystem(Matrix matrix) {
         coms.addCmd(new SolverSortMatrixCommand(this, matrix));
         coms.addCmd(new SolverEliminationCommand(this, matrix));
-        coms.addCmd(new SolverUndoColSwapsCommand(this, matrix));
         coms.processCmds();
+
+        if (this.hasInfiniteSolutions || this.hasNoSolution) {
+        } else {
+            if (!undoColSwapList.isEmpty()) {
+                coms.addCmd(new SolverUndoColSwapsCommand(this, matrix));
+                coms.processCmds();
+            }
+            solution = solution.trim();
+        }
+    }
+
+    public String getSolution() {
+        return solution;
     }
 }
 
