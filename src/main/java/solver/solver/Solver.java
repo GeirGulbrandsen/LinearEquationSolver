@@ -109,7 +109,7 @@ public class Solver {
                 StringBuilder buildSolution = new StringBuilder();
                 for (Row row : matrix.rows) {
                     String str = (String.format("%.5f", row.getValue(row.getLength() - 1)));
-                    if (Double.parseDouble(str) != 0.0) {
+                    if (row.isNotAllZeros()) {
                         solution = String.format("%s%s\n", solution, str);
                     }
                 }

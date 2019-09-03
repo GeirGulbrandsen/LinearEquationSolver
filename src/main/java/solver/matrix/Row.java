@@ -1,5 +1,7 @@
 package solver.matrix;
 
+import java.util.Arrays;
+
 public class Row {
     private String name;
     private int length;
@@ -31,5 +33,14 @@ public class Row {
         double temp = coefficients[val1];
         coefficients[val1] = coefficients[val2];
         coefficients[val2] = temp;
+    }
+
+    public boolean isNotAllZeros() {
+        boolean notAllZeros = true;
+        if (Arrays.stream(this.coefficients)
+                .allMatch(c -> c == 0.0)){
+            notAllZeros = false;
+        }
+        return notAllZeros;
     }
 }
