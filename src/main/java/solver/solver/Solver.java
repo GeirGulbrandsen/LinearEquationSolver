@@ -106,7 +106,6 @@ public class Solver {
                         gaussJordanElimRow(matrix.rows[pos], matrix.rows[row], pos);
                     }
                 }
-                StringBuilder buildSolution = new StringBuilder();
                 for (Row row : matrix.rows) {
                     String str = (String.format("%.5f", row.getValue(row.getLength() - 1)));
                     if (row.isNotAllZeros()) {
