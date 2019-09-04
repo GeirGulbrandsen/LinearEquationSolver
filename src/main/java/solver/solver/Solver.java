@@ -47,7 +47,7 @@ public class Solver {
     }
 
     public void sortMatrix(Matrix matrix, int col) {
-        for (int i = col; i < matrix.getShape()[1] - 1; i++) {
+        for (int i = col; i < matrix.getShape()[0] - 1; i++) {
             if (matrix.getValue(i, col) == 0d) {
                 for (int j = i + 1; j <= matrix.getShape()[0] - 1; j++) {
                     if (matrix.getValue(j, col) != 0) {
@@ -86,7 +86,7 @@ public class Solver {
     public void gaussJordanElim(Matrix matrix) {
 
         System.out.println("Start solving the equation.\nRows manipulation:");
-        for (int pos = 0; pos < matrix.rows[0].getLength() - 1; pos++) {
+        for (int pos = 0; pos < matrix.rows.length; pos++) {
             if (matrix.rows[pos].getValue(pos) != 1) normaliseRow(matrix.rows[pos], pos);
             for (int i = pos; i < matrix.rows.length - 1; i++) {
                 gaussJordanElimRow(matrix.rows[pos], matrix.rows[i + 1], pos);
@@ -191,8 +191,7 @@ public class Solver {
         coms.addCmd(new SolverEliminationCommand(this, matrix));
         coms.processCmds();
 
-        if (this.hasInfiniteSolutions || this.hasNoSolution) {
-        } else {
+        if (!this.hasInfiniteSolutions && !this.hasNoSolution) {
             if (!undoColSwapList.isEmpty()) {
                 coms.addCmd(new SolverUndoColSwapsCommand(this, matrix));
                 coms.processCmds();
