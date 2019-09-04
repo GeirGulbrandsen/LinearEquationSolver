@@ -22,11 +22,11 @@ public class Solver {
         undoColSwapList = new ArrayDeque<>();
     }
 
-    boolean hasNoSolution() {
+    public boolean hasNoSolution() {
         return hasNoSolution;
     }
 
-    boolean hasInfiniteSolutions() {
+    public boolean hasInfiniteSolutions() {
         return hasInfiniteSolutions;
     }
 
@@ -110,7 +110,7 @@ public class Solver {
                 for (Row row : matrix.rows) {
                     String str = (String.format("%.5f", row.getValue(row.getLength() - 1)));
                     if (row.isNotAllZeros()) {
-                        solution = String.format("%s%s\n", solution, str);
+                        solution = String.format("%s%s ", solution, str);
                     }
                 }
             }

@@ -7,6 +7,7 @@ import solver.solver.Solver;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
@@ -33,9 +34,21 @@ public class Main {
             comms.processCmds();
 
             try (FileWriter fileWriter = new FileWriter(outputFile)) {
-                fileWriter.write(solver.getSolution());
+                if (solver.hasNoSolution() || solver.hasInfiniteSolutions()) {
+                    fileWriter.write(matrix.getSolution());
+                } else {
+                    Arrays.stream(solver.getSolution()
+                            .split(" "))
+                            .forEach(x -> {
+                                try {
+                                    fileWriter.write(x + "\n");
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            });
+                }
             } catch (IOException e) {
-                System.out.println("Could not open file");
+                e.printStackTrace();
             }
             System.out.printf("Saved to file %s\n%n", outputFile);
         }

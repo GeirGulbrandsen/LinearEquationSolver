@@ -22,7 +22,7 @@ public class SolverSolveCommandTest {
         comms.addCmd(new SolverSolveCommand(solver, matrix));
         comms.processCmds();
 
-        assertEquals("1.00000\n2.00000\n3.00000", matrix.getSolution());
+        assertEquals("1.00000 2.00000 3.00000", matrix.getSolution());
     }
 
 
